@@ -1,40 +1,65 @@
-<h3 align="center">Sorting Visualizer 📊 (Flutter)</h3>
+# Sorting Visualizer using Flutter
 
-<p align="center">
-  A beautifully animated sorting algorithm visualizer built using Flutter. 
-  Easily understand how different sorting algorithms work with interactive and dynamic bar animations.
-</p>
-
-
+A beautiful, interactive, and educational Flutter application to visualize how various sorting algorithms work in real-time. Features a modern UI, real-time speed control, dynamic array resizing, and detailed performance metrics.
 
 ## 🚀 Features
 
-- Visualize classic sorting algorithms:
-  - Bubble Sort
-  - Selection Sort
-  - Insertion Sort
-- Color-coded bar animations for comparisons and swaps
-- Responsive layout for different screen sizes
-- Flutter-powered smooth UI and transitions
+*   **Algorithms Supported**:
+    *   **Bubble Sort** (`O(n²)`)
+    *   **Selection Sort** (`O(n²)`)
+    *   **Insertion Sort** (`O(n²)`)
+    *   **Merge Sort** (`O(n log n)`)
+    *   **Quick Sort** (`O(n log n)`)
 
-## 🛠 Built With
+*   **Interactive Controls**:
+    *   **Start/Stop/Shuffle**: Full control over the sorting process.
+    *   **Speed Slider**: Adjust animation speed in real-time (0.5x to 2.5x).
+    *   **Array Size**: Dynamically change the number of elements to sort (5 to 50).
 
-- Flutter
-- Dart
-- Custom animations and widgets
+*   **Real-time Metrics**:
+    *   Live tracking of **Comparisons** and **Swaps**.
+    *   Visual indicators for active comparisons, swaps, and sorted elements.
 
-  
-## How to Contribute
+*   **Architecture**:
+    *   Built using **MVVM (Model-View-ViewModel)** for clean separation of concerns.
+    *   **Provider** (via `ChangeNotifier`) for efficient state management.
 
-contributions are welcome from the community to enhance the features and functionality of this project. If you're interested in contributing, follow these steps:
+## 🛠 Tech Stack
 
-1. Fork the repository to your GitHub account.
-2. Make your desired changes and improvements to the project.
-3. Test your changes thoroughly to ensure they work as intended.
-4. Submit a pull request to the main repository, detailing the changes you've made and any relevant information.
+*   **Framework**: Flutter
+*   **Language**: Dart
+*   **Architecture**: MVVM
+*   **State Management**: `ChangeNotifier` (Native Flutter)
+*   **Charts**: Custom implementation using `fl_chart`
 
-## Thank You !
+## 📂 Project Structure
 
+```
+lib/
+├── algorithms/           # Algorithm implementations
+│   ├── sorting_algorithm.dart  # Abstract base class
+│   ├── bubble_sort.dart
+│   ├── quick_sort.dart
+│   └── ...
+├── view_models/          # Business logic & State
+│   └── sorting_view_model.dart
+├── views/                # UI Screens
+│   └── sorting_page.dart
+├── constants.dart        # Colors, Strings, Configs
+├── widgets.dart          # Reusable UI Components
+└── main.dart             # Entry point
+```
 
+## 📸 How It Works
 
+1.  **Select Algorithm**: Choose between Bubble, Selection, Insertion, Merge, or Quick sort.
+2.  **Adjust Settings**: Use the sliders to set your desired array size and animation speed.
+3.  **Shuffle**: Generate a new random set of bars.
+4.  **Sort**: Watch the algorithm in action! The visualizer highlights:
+    *   **Green**: Sorted elements
+    *   **Cyan**: Active element being examined
+    *   **Red**: Elements currently being compared
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](issues).
