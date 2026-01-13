@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'constants.dart';
-import 'sorting_details.dart';
+import 'views/sorting_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
       ),
-      home: SortDetailsScreen(),
+      home: const SortingPage(),
     );
   }
 }

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'constants.dart';
+import 'algorithms/sorting_algorithm.dart';
 
 class BottomPointer extends StatelessWidget {
   final int length;
   final List<int> pointers;
 
-  const BottomPointer({Key? key, required this.length, required this.pointers})
-      : super(key: key);
+  const BottomPointer({super.key, required this.length, required this.pointers});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Stack(
         children: pointers.asMap().entries.map((entry) {
           int index = entry.key;
@@ -34,11 +34,11 @@ class BottomPointer extends StatelessWidget {
                     color: (index == 0 ? activeData : comparingData)
                         .withOpacity(0.3),
                     blurRadius: 8,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.keyboard_arrow_up_rounded,
                 color: Colors.white,
                 size: 24,
@@ -57,11 +57,11 @@ class ChartWidget extends StatefulWidget {
   final List<int> sortedElements;
 
   const ChartWidget({
-    Key? key,
+    super.key,
     required this.numbers,
     required this.activeElements,
     this.sortedElements = const [],
-  }) : super(key: key);
+  });
 
   @override
   _ChartWidgetState createState() => _ChartWidgetState();
@@ -102,7 +102,7 @@ class _ChartWidgetState extends State<ChartWidget>
     return Container(
       width: double.infinity,
       height: 280,
-      margin: EdgeInsets.all(defaultPadding),
+      margin: const EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
         color: surface,
         borderRadius: BorderRadius.circular(borderRadius),
@@ -110,7 +110,7 @@ class _ChartWidgetState extends State<ChartWidget>
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             blurRadius: 10,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -118,7 +118,7 @@ class _ChartWidgetState extends State<ChartWidget>
         animation: _animationController,
         builder: (context, child) {
           return Padding(
-            padding: EdgeInsets.all(defaultPadding),
+            padding: const EdgeInsets.all(defaultPadding),
             child: BarChart(
               mainBarData(),
               swapAnimationDuration: fastDuration,
@@ -178,7 +178,7 @@ class _ChartWidgetState extends State<ChartWidget>
               if (value.toInt() < widget.numbers.length) {
                 return Text(
                   widget.numbers[value.toInt()].toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontWeight: FontWeight.w500,
                     fontSize: 12,
@@ -190,52 +190,54 @@ class _ChartWidgetState extends State<ChartWidget>
             reservedSize: 32,
           ),
         ),
-        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
       borderData: FlBorderData(show: false),
       barGroups: showingGroups(),
-      gridData: FlGridData(show: false),
+      gridData: const FlGridData(show: false),
     );
   }
 }
 
 class SortingAlgorithmsList extends StatelessWidget {
   final bool isDisabled;
-  final Function(String) onTap;
-  final String selectedAlgorithm;
+  final Function(SortingAlgorithm) onTap;
+  final String selectedAlgorithmTitle;
+  final List<SortingAlgorithm> algorithms;
 
   const SortingAlgorithmsList({
-    Key? key,
+    super.key,
     this.isDisabled = false,
     required this.onTap,
-    required this.selectedAlgorithm,
-  }) : super(key: key);
+    required this.selectedAlgorithmTitle,
+    required this.algorithms,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      margin: EdgeInsets.symmetric(horizontal: defaultPadding),
+      margin: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: sortingAlgorithmsList.length,
+        itemCount: algorithms.length,
         itemBuilder: (BuildContext context, int index) {
-          final algorithm = sortingAlgorithmsList[index];
-          final isSelected = algorithm.title == selectedAlgorithm;
+          final algorithm = algorithms[index];
+          final isSelected = algorithm.title == selectedAlgorithmTitle;
 
           return AnimatedContainer(
             duration: fastDuration,
-            margin: EdgeInsets.symmetric(horizontal: smallPadding),
+            margin: const EdgeInsets.symmetric(horizontal: smallPadding),
             child: Material(
               color: Colors.transparent,
               child: InkWell(
-                onTap: isDisabled ? null : () => onTap(algorithm.title),
+                onTap: isDisabled ? null : () => onTap(algorithm),
                 borderRadius: BorderRadius.circular(borderRadius),
                 child: Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: largePadding,
                     vertical: smallPadding,
                   ),
@@ -251,7 +253,7 @@ class SortingAlgorithmsList extends StatelessWidget {
                             BoxShadow(
                               color: activeData.withOpacity(0.3),
                               blurRadius: 8,
-                              offset: Offset(0, 2),
+                              offset: const Offset(0, 2),
                             ),
                           ]
                         : [],
@@ -267,7 +269,7 @@ class SortingAlgorithmsList extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(height: 2),
+                     const SizedBox(height: 2),
                       Text(
                         'O(${algorithm.complexity})',
                         style: TextStyle(
@@ -293,17 +295,17 @@ class StatusCard extends StatelessWidget {
   final bool isActive;
 
   const StatusCard({
-    Key? key,
+    super.key,
     required this.text,
     this.isActive = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: mediumDuration,
-      margin: EdgeInsets.all(defaultPadding),
-      padding: EdgeInsets.all(largePadding),
+      margin: const EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(largePadding),
       decoration: BoxDecoration(
         color: surface,
         borderRadius: BorderRadius.circular(borderRadius),
@@ -315,7 +317,7 @@ class StatusCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 8,
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -323,7 +325,7 @@ class StatusCard extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -343,13 +345,13 @@ class ActionButton extends StatelessWidget {
   final bool isDestructive;
 
   const ActionButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.icon,
     this.onPressed,
     this.isPrimary = false,
     this.isDestructive = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

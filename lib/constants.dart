@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'modals.dart';
 
 // Modern color palette with gradients and professional colors
 const Color primary = Color(0xFF0D1B2A);
@@ -35,28 +34,14 @@ const LinearGradient comparingGradient = LinearGradient(
 const String bubbleSortTitle = 'Bubble Sort';
 const String selectionSortTitle = 'Selection Sort';
 const String insertionSortTitle = 'Insertion Sort';
+const String mergeSortTitle = 'Merge Sort';
+const String quickSortTitle = 'Quick Sort';
 
 // Complexity strings
 const bigOh = 'O';
 const logN = 'log(n)';
 const nsquare = 'n²';
 const logNsquare = 'n log(n)';
-
-// Enhanced algorithms list with proper complexity values
-final List<SortingAlgorithm> sortingAlgorithmsList = [
-  SortingAlgorithm(
-    title: bubbleSortTitle,
-    complexity: nsquare,
-  ),
-  SortingAlgorithm(
-    title: selectionSortTitle,
-    complexity: nsquare,
-  ),
-  SortingAlgorithm(
-    title: insertionSortTitle,
-    complexity: nsquare,
-  ),
-];
 
 // Animation durations
 const Duration fastDuration = Duration(milliseconds: 200);
