@@ -1,7 +1,7 @@
 {
-    "buildCommand": "flutter build web --release",
+    "buildCommand": "bash build.sh",
     "outputDirectory": "build/web",
-    "installCommand": "echo 'No dependencies to install'",
+    "installCommand": "echo 'Dependencies will be installed by build script'",
     "rewrites": [
         {
             "source": "/(.*)",
